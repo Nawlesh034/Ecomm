@@ -8,7 +8,7 @@ export default function AdminPanel() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [newProduct, setNewProduct] = useState({
     name: '',
-    category: '',
+    category: '',  
     price: '',
     image: '',
     description: ''
@@ -21,7 +21,7 @@ export default function AdminPanel() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch('https://ecomm-backend-9ygz.onrender.com/api/products');
+      const response = await fetch('https://ecomm-backend-jkso.onrender.com/api/products');
       const data = await response.json();
       setProducts(data);
     } catch (error) {
@@ -35,7 +35,7 @@ export default function AdminPanel() {
   const handleAddProduct = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://ecomm-backend-9ygz.onrender.com/api/products/', {
+      const response = await fetch('https://ecomm-backend-jkso.onrender.com/api/products/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ export default function AdminPanel() {
   // Update product
   const handleUpdateProduct = async (id, updatedData) => {
     try {
-      const response = await fetch(`https://ecomm-backend-9ygz.onrender.com/api/products/${id}`, {
+      const response = await fetch(`https://ecomm-backend-jkso.onrender.com/api/products/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export default function AdminPanel() {
   const handleDeleteProduct = async (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
-        const response = await fetch(`https://ecomm-backend-9ygz.onrender.com/api/products/${id}`, {
+        const response = await fetch(`https://ecomm-backend-jkso.onrender.com/api/products/${id}`, {
           method: 'DELETE',
         });
         
