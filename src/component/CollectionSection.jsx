@@ -9,7 +9,7 @@ const CollectionSection = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://ecomm-backend-9ygz.onrender.com/api/products');
+        const response = await fetch('https://ecomm-backend-jkso.onrender.com/api/products');
         if (response.ok) {
           const data = await response.json();
           setProducts(data);
