@@ -1,5 +1,5 @@
 // Simple product service for API calls
-const API_BASE_URL = 'https://ecomm-backend-9ygz.onrender.com/api';
+const API_BASE_URL = 'https://ecomm-backend-jkso.onrender.com';
 
 export const productService = {
   // Get all products
