@@ -35,7 +35,7 @@ export default function AdminPanel() {
   const handleAddProduct = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://ecomm-backend-9ygz.onrender.com/api/products', {
+      const response = await fetch('https://ecomm-backend-9ygz.onrender.com/api/products/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
