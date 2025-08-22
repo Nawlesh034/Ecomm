@@ -10,15 +10,17 @@ export default function TopSelling() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://ecomm-backend-jkso.onrender.com/api/products');
+        const response = await fetch(
+          "https://ecomm-backend-jkso.onrender.com/api/products"
+        );
         if (!response.ok) {
-          throw new Error('Failed to fetch products');
+          throw new Error("Failed to fetch products");
         }
         const data = await response.json();
         setProducts(data);
       } catch (err) {
         setError(err.message);
-        console.error('Error fetching products:', err);
+        console.error("Error fetching products:", err);
       } finally {
         setLoading(false);
       }
@@ -26,19 +28,20 @@ export default function TopSelling() {
 
     fetchProducts();
   }, []);
+
   return (
-    <section className="bg-gray-100  mx-28 rounded-2xl p-6">
+    <section className="bg-gray-100 mx-4 sm:mx-8 lg:mx-20 xl:mx-28 rounded-2xl p-4 sm:p-6 lg:p-8">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
         <div>
-          <p className="text-pink-600 text-sm tracking-widest font-semibold">
+          <p className="text-pink-600 text-xs sm:text-sm tracking-widest font-semibold">
             MOST SELLING ITEMS
           </p>
-          <h2 className="text-2xl font-bold">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold">
             Top selling Categories This Week
           </h2>
         </div>
-        <div className="flex space-x-2">
+        <div className="flex flex-wrap gap-2">
           <button className="px-3 py-1 rounded-full bg-pink-600 text-white text-sm">
             All Products
           </button>
@@ -70,7 +73,7 @@ export default function TopSelling() {
 
       {/* Products Grid */}
       {!loading && !error && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {products.length > 0 ? (
             products.slice(0, 8).map((product) => (
               <div
@@ -82,11 +85,16 @@ export default function TopSelling() {
                   alt={product.name}
                   className="rounded-lg w-full h-40 object-cover"
                   onError={(e) => {
-                    e.target.src = 'https://via.placeholder.com/300x200/cccccc/ffffff?text=No+Image';
+                    e.target.src =
+                      "https://via.placeholder.com/300x200/cccccc/ffffff?text=No+Image";
                   }}
                 />
-                <p className="text-pink-600 font-bold mt-2">${product.price}</p>
-                <h3 className="font-semibold text-gray-800 truncate">{product.name}</h3>
+                <p className="text-pink-600 font-bold mt-2">
+                  ${product.price}
+                </p>
+                <h3 className="font-semibold text-gray-800 truncate">
+                  {product.name}
+                </h3>
                 <p className="text-gray-500 text-sm">{product.category}</p>
                 <div className="flex mt-1 text-yellow-500">
                   {Array.from({ length: product.rating || 5 }).map((_, i) => (

@@ -8,13 +8,15 @@ const FlashSale = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://ecomm-backend-jkso.onrender.com/api/products');
+        const response = await fetch(
+          "https://ecomm-backend-jkso.onrender.com/api/products"
+        );
         if (response.ok) {
           const data = await response.json();
           setProducts(data);
         }
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error("Error fetching products:", error);
         // Fallback to static data if API fails
         setProducts([
           {
@@ -22,8 +24,9 @@ const FlashSale = () => {
             name: "Fashion Item",
             category: "FASHION BAG",
             price: 99,
-            image: "https://images.pexels.com/photos/634754/pexels-photo-634754.jpeg"
-          }
+            image:
+              "https://images.pexels.com/photos/634754/pexels-photo-634754.jpeg",
+          },
         ]);
       } finally {
         setLoading(false);
@@ -34,27 +37,29 @@ const FlashSale = () => {
   }, []);
 
   return (
-    <section className="bg-pink-50 rounded-3xl p-8 md:p-12 relative overflow-visible mx-28">
+    <section className="bg-pink-50 rounded-3xl p-6 sm:p-8 md:p-12 relative overflow-visible mx-4 sm:mx-12 md:mx-28">
       {/* Header */}
       <div className="flex justify-between items-start md:items-center flex-col md:flex-row gap-6 relative z-10">
         <div>
           <p className="text-pink-500 font-semibold uppercase tracking-wide">
             New Collection
           </p>
-          <h2 className="text-3xl font-bold text-gray-900">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
             Trending Flash Sell
           </h2>
         </div>
 
         {/* Countdown Timer */}
-        <div className="flex gap-4">
+        <div className="flex gap-2 sm:gap-4">
           {["15 Days", "23 Hours", "45 Min", "40 Sec"].map((item, i) => (
             <div
               key={i}
-              className="w-16 h-16 bg-white rounded-full flex flex-col items-center justify-center shadow-md text-sm font-semibold text-gray-900"
+              className="w-14 h-14 sm:w-16 sm:h-16 bg-white rounded-full flex flex-col items-center justify-center shadow-md text-xs sm:text-sm font-semibold text-gray-900"
             >
               <span>{item.split(" ")[0]}</span>
-              <span className="text-xs text-gray-500">{item.split(" ")[1]}</span>
+              <span className="text-[10px] sm:text-xs text-gray-500">
+                {item.split(" ")[1]}
+              </span>
             </div>
           ))}
         </div>
@@ -67,29 +72,34 @@ const FlashSale = () => {
         </div>
       )}
 
-      {/* Product Cards - peeking outside */}
+      {/* Product Cards - horizontal scroll on mobile */}
       {!loading && (
-        <div className="mt-8 flex gap-6 mx-36 relative z-20 overflow-x-auto">
+        <div className="mt-8 flex gap-4 sm:gap-6 relative z-20 overflow-x-auto scrollbar-hide px-2 sm:px-0">
           {products.slice(0, 5).map((product) => (
             <div
               key={product._id}
-              className="bg-white rounded-xl shadow-md w-56 flex-shrink-0 relative"
+              className="bg-white rounded-xl shadow-md w-44 sm:w-56 flex-shrink-0 relative"
             >
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-64 object-cover rounded-t-xl"
+                className="w-full h-52 sm:h-64 object-cover rounded-t-xl"
                 onError={(e) => {
-                  e.target.src = 'https://via.placeholder.com/224x256/cccccc/ffffff?text=No+Image';
+                  e.target.src =
+                    "https://via.placeholder.com/224x256/cccccc/ffffff?text=No+Image";
                 }}
               />
               <div className="absolute top-2 right-2 bg-black text-white text-xs font-semibold px-2 py-1 rounded-full">
                 25% Off
               </div>
-              <div className="p-4">
-                <p className="text-lg font-bold">${product.price}</p>
-                <h3 className="font-medium text-gray-900 truncate">{product.name}</h3>
-                <p className="text-pink-500 text-sm uppercase font-semibold">
+              <div className="p-3 sm:p-4">
+                <p className="text-base sm:text-lg font-bold">
+                  ${product.price}
+                </p>
+                <h3 className="font-medium text-gray-900 truncate">
+                  {product.name}
+                </h3>
+                <p className="text-pink-500 text-xs sm:text-sm uppercase font-semibold">
                   {product.category}
                 </p>
               </div>
@@ -98,7 +108,7 @@ const FlashSale = () => {
         </div>
       )}
 
-      {/* Right Side Pink Section */}
+      {/* Right Side Pink Section (desktop only) */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-pink-500 rounded-l-3xl hidden md:block z-0"></div>
 
       {/* Button */}

@@ -40,13 +40,13 @@ const images = [
 
 export default function FashionGallery() {
   return (
-    <section className=" bg-white py-10">
-      <div className=" mx-auto flex flex-wrap justify-center gap-6">
+    <section className="bg-white py-8 sm:py-10">
+      <div className="mx-auto flex flex-wrap justify-center gap-4 sm:gap-6 px-4">
         {images.map((img) => (
           <div
             key={img.id}
-            className={`w-44 h-44 overflow-hidden shadow-md ${
-              img.shape === "circle" ? "rounded-full" : "rounded-3xl"
+            className={`w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 overflow-hidden shadow-md ${
+              img.shape === "circle" ? "rounded-full" : "rounded-2xl sm:rounded-3xl"
             }`}
           >
             <img
